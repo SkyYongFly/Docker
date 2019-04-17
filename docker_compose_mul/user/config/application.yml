@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: spring-data-jpa-demo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    # MySQL将端口映射到了33060端口，那么通过 宿主机IP:33060是可以访问到数据库的
+    # 而应用将自己的网络模式设置为 host, 即和宿主机同一IP了，那么直接用 localhost:33060 即可
+    url: jdbc:mysql://localhost:33060/example?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      #设置创建表的机制，
+      #create 每次启动都删除原有表新建表，
+      #update 如果已经存在则不新建，但是如果表结构与定义的实体不一致则需要修改表结构
+      ddl-auto: update
+    #SQL操作实时显示相关sql语句
+    show-sql: true
+
+server:
+  port: 8020

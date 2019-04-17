@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: spring-data-jpa-demo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.3.15:3306/example?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      #设置创建表的机制，
+      #create 每次启动都删除原有表新建表，
+      #update 如果已经存在则不新建，但是如果表结构与定义的实体不一致则需要修改表结构
+      ddl-auto: update
+    #SQL操作实时显示相关sql语句
+    show-sql: true
+
+server:
+  port: 8020
