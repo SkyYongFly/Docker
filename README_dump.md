@@ -1,74 +1,22 @@
-- [1. Docker初识](#head1)
-	- [1.1. Docker是什么](#head2)
-	- [1.2. Docker的作用](#head3)
-	- [1.3. Docker的优点](#head4)
-	- [1.4. 容器化与虚拟化](#head5)
-- [2. Docker安装](#head6)
-	- [2.1. 环境介绍](#head7)
-	- [2.2. 安装步骤](#head8)
-	- [2.3. 环境配置](#head9)
-- [3. Docker基本概念](#head10)
-	- [3.1. 镜像](#head11)
-	- [3.2. 容器](#head12)
-	- [3.3. 仓库](#head13)
-- [4. 镜像操作](#head14)
-	- [4.1. 查看镜像](#head15)
-	- [4.2.  获取镜像](#head16)
-	- [4.3.  查找镜像](#head17)
-	- [4.4. 镜像标签](#head18)
-	- [4.5.  删除镜像](#head19)
-	- [4.6. 创建镜像](#head20)
-- [5. 容器操作](#head21)
-	- [5.1. 查看容器](#head22)
-	- [5.2. 创建容器](#head23)
-	- [5.3.   运行容器](#head24)
-	- [5.4.   停止容器](#head25)
-	- [5.5.   删除容器](#head26)
-	- [5.6. 进入容器](#head27)
-	- [5.7. 导入导出容器](#head28)
-- [6. 仓库](#head29)
-	- [6.1. 官方仓库](#head30)
-	- [6.2.  私有仓库](#head31)
-- [7. 数据卷](#head32)
-	- [7.1.   数据卷](#head33)
-	- [7.2. 数据卷容器](#head34)
-	- [7.3. 数据迁移](#head35)
-- [8. 网络](#head36)
-	- [8.1. 端口绑定](#head37)
-	- [8.2. 容器通信](#head38)
-- [9. Dockerfile](#head39)
-	- [9.1. 前言说明](#head40)
-	- [9.2. 基本概念](#head41)
-		- [9.2.1. 何为Dockerfile?](#head42)
-		- [9.2.2. 组成结构](#head43)
-		- [9.2.3. 注释](#head44)
-	- [9.3. 命令详解](#head45)
-	- [9.4. 操作步骤](#head46)
-		- [9.4.1. 编写微服务应用](#head47)
-		- [9.4.2. 创建镜像操作目录](#head48)
-		- [9.4.3. 编写构建自定义镜像脚本](#head49)
-		- [9.4.4. 编译生成镜像](#head50)
-		- [9.4.5. 运行容器实例](#head51)
-
-------
 <font size=5>**Docker学习笔记**</font>
+
 ------
 
-# <span id="head1">1. Docker初识</span>
+# 1. Docker初识
 
-## <span id="head2">1.1. Docker是什么</span>
+## 1.1. Docker是什么
 
-## <span id="head3">1.2. Docker的作用</span>
+## 1.2. Docker的作用
 
-## <span id="head4">1.3. Docker的优点</span>
+## 1.3. Docker的优点
 
-## <span id="head5">1.4. 容器化与虚拟化</span>
+## 1.4. 容器化与虚拟化
 
-# <span id="head6">2. Docker安装</span>
+# 2. Docker安装
 
-## <span id="head7">2.1. 环境介绍</span>
+## 2.1. 环境介绍
 
-## <span id="head8">2.2. 安装步骤</span>
+## 2.2. 安装步骤
 
 1)  yum 包更新到最新
 
@@ -130,7 +78,7 @@
 
 ![img](README.assets/clip_image028.jpg)
 
-## <span id="head9">2.3. 环境配置</span>
+## 2.3. 环境配置
 
 后期在使用docker的时候，我们需要获取各种各样的镜像，国外镜像同样下载缓慢，所以我们可以配置系统docker阿里云镜像，以加速访问下载。
 
@@ -140,9 +88,9 @@
 
 ![1569237005280](README.assets/1569237005280.png)
 
-# <span id="head10">3. Docker基本概念</span>
+# 3. Docker基本概念
 
-## <span id="head11">3.1. 镜像</span>
+## 3.1. 镜像
 
 在实际生活生产中，工厂要生产某个东西，例如造个飞机，肯定不会冲上去就是一顿操作，而是一群设计师设计出飞机基本模型，后期根据模型生产，可以生产同样型号的飞机很多架；编程语言中，我们在Java中创建一个对象实例，这个实例哪来的？就是根据我们定义的模型对象new出来的。同样的在docker中镜像就相当于模型的概念，我们可以通过这个镜像创建多个镜像实例。对应某个特定的镜像来说，它只能有一个，但是镜像实例可以有很多很多……
 
@@ -154,7 +102,7 @@
 
 另外我们可以自定义镜像，例如我们开发了某个Java应用程序，需要部署到项目现场，但是会有多个现场需要部署，而我们知道部署程序的话会很麻烦，一堆依赖的环境需要配置，每个线程都需要安装配置一遍，很浪费人力，所以我们可以将我们的项目程序和相关依赖环境制作成镜像，直接放到现场生产环境生成实例启动即可，简单高效。
 
-## <span id="head12">3.2. 容器</span>
+## 3.2. 容器
 
 ![https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1549989956195&di=ee77fe33471d2b2f2bae03a0b4011c7d&imgtype=0&src=http%3A%2F%2Fp1.ssl.cdn.btime.com%2Ft01123bc8ddd22cef33.jpg%3Fsize%3D1080x675](README.assets/clip_image034.jpg)
 
@@ -164,17 +112,17 @@
 
 可以把容器看做是一个简易版的 Linux 环境（包括root用户权限、进程空间、用户空间和网络空间等）和运行在其中的应用程序。
 
-## <span id="head13">3.3. 仓库</span>
+## 3.3. 仓库
 
 既然我们知道有很多现有的镜像可以使用，那么这些镜像在哪呢？这就是仓库的概念。仓库用来存放镜像的。Docker官方提供了docker仓库给我们，我们可以连接下载所需要的镜像。
 
 我们安装的软件会有各种版本，而镜像也是有各种版本的，只不过用一个叫标签（tag）的东西来区分。
 
-# <span id="head14">4. 镜像操作</span>
+# 4. 镜像操作
 
 本章先接触下docker镜像的基础操作。
 
-## <span id="head15">4.1. 查看镜像</span>
+## 4.1. 查看镜像
 
 命令：**docker images**
 
@@ -188,7 +136,7 @@
 | ----------------------- | ------------------------------- | ------------ | ----------- | ------------ |
 | 镜像仓库用户名/镜像名称 | 镜像版本标签   latest表示最新版 | 镜像唯一ID   | 创建时间    | 镜像文件大小 |
 
-## <span id="head16">4.2.  获取镜像</span>
+## 4.2.  获取镜像
 
 Ø  命令：**docker pull [镜像名称:版本]**
 
@@ -210,7 +158,7 @@
 
 ![img](README.assets/clip_image044.jpg)
 
-## <span id="head17">4.3.  查找镜像</span>
+## 4.3.  查找镜像
 
 命令：**docker search [镜像名称]**
 
@@ -228,11 +176,11 @@
 
 OPTIONS说明：
 
---automated :只列出 automated build类型的镜像；
+   --automated :只列出 automated build类型的镜像；
 
---no-trunc :显示完整的镜像描述；
+  --no-trunc :显示完整的镜像描述；
 
--s :列出收藏数不小于指定值的镜像。
+   -s :列出收藏数不小于指定值的镜像。
 
 例如：列出stars数量大于100的ubuntu镜像
 
@@ -240,7 +188,7 @@ OPTIONS说明：
 
 不过这里我们看到这种语法命令已经过时了，并给出了新的语法~~~
 
-## <span id="head18">4.4. 镜像标签</span>
+## 4.4. 镜像标签
 
 命令：**docker tag [镜像ID/镜像名称] [Tag内容]**
 
@@ -252,7 +200,7 @@ OPTIONS说明：
 
 我们可以看到即使创建了多个Tag，但是镜像的ID始终是不变的，即还是同一个镜像本身。
 
-## <span id="head19">4.5.  删除镜像</span>
+## 4.5.  删除镜像
 
 命令：**docker rmi [镜像名称/镜像ID/镜像Tag标签]**
 
@@ -280,7 +228,7 @@ OPTIONS说明：
 
 ![img](README.assets/clip_image054.jpg)
 
-因为**当前删除的镜像有正在运行的容器，所以不能直接删除**，我们可以查看下正在运行的容器核实下：
+因为当前删除的镜像有正在运行的容器，所以不能直接删除，我们可以查看下正在运行的容器核实下：
 
 ![img](README.assets/clip_image056.jpg)
 
@@ -302,7 +250,7 @@ OPTIONS说明：
 
 删除默认latest版本Tag，其他Tag继续存在。
 
-## <span id="head20">4.6. 创建镜像</span>
+## 4.6. 创建镜像
 
 我们目前使用的镜像都是从官方下载的，那么我们可以自己制作镜像吗？那是肯定的，我们可以将容器构建成镜像。我们先来简单试试，先不着急用我们写的代码应用构建镜像，我们用下载的ubuntu镜像创建一个容器，然后在容器中添加一些内容，然后打包成一个新的镜像。即步骤：
 
@@ -344,9 +292,9 @@ exit推出ubuntu容器终端。
 
 ![img](README.assets/clip_image076.jpg)
 
-# <span id="head21">5. 容器操作</span>
+# 5. 容器操作
 
-## <span id="head22">5.1. 查看容器</span>
+## 5.1. 查看容器
 
 查看当前系统容器：**docker ps [-a]**
 
@@ -362,7 +310,7 @@ exit推出ubuntu容器终端。
 
 可以看到正在运行的容器为redis容器，通过docker ps -a 可以查看到已经停止运行的hello-world镜像对应的容器。这里需要注意下因为hello-world镜像对应的程序只是简单输出内容，启动后执行完程序便直接结束了，所以我们一般是看不到正在运行的hello-world镜像的容器~~~
 
-## <span id="head23">5.2. 创建容器</span>
+## 5.2. 创建容器
 
 命令：**docker create –name [容器名称] [镜像名称]**
 
@@ -372,7 +320,7 @@ exit推出ubuntu容器终端。
 
 ![img](README.assets/clip_image084.jpg)
 
-## <span id="head24">5.3.   运行容器</span>
+## 5.3.   运行容器
 
 命令：**docker start [容器名称或者容器ID]**
 
@@ -408,7 +356,7 @@ docker start 启动的是已经存在的容器，而docker run 操作对象是�
 
 ![img](README.assets/clip_image090.jpg)
 
-## <span id="head25">5.4.   停止容器</span>
+## 5.4.   停止容器
 
 命令：**docker stop [容器名称或者ID]**
 
@@ -416,7 +364,7 @@ docker start 启动的是已经存在的容器，而docker run 操作对象是�
 
 需要注意的是，当容器中的应用终结时，容器也会自动停止，这也是为什么hello-world启动完成后我们查看正在运行的容器却没有它的原因，而redis这些服务中间件肯定需要一直运行的，所以容器也是处于一个运行状态。
 
-## <span id="head26">5.5.   删除容器</span>
+## 5.5.   删除容器
 
 命令：**docker rm [-f]  [容器名称或者ID]**
 
@@ -426,7 +374,7 @@ docker start 启动的是已经存在的容器，而docker run 操作对象是�
 
 ![img](README.assets/clip_image096.jpg)
 
-## <span id="head27">5.6. 进入容器</span>
+## 5.6. 进入容器
 
 命令：**docker exec [-i] [-t] [容器名称或ID] [bash]**
 
@@ -434,7 +382,7 @@ docker start 启动的是已经存在的容器，而docker run 操作对象是�
 
 ![img](README.assets/clip_image098.jpg)
 
-## <span id="head28">5.7. 导入导出容器</span>
+## 5.7. 导入导出容器
 
 导出容器命令：**docker export [容器名称或者ID] > [文件名称]**
 
@@ -464,9 +412,9 @@ docker start 启动的是已经存在的容器，而docker run 操作对象是�
 
 我们加上command试试
 
-# <span id="head29">6. 仓库</span>
+# 6. 仓库
 
-## <span id="head30">6.1. 官方仓库</span>
+## 6.1. 官方仓库
 
 镜像既然是文件，当然需要有保存的地方，那保存在哪里呢？如何保存？我们每次docker pull 的镜像是哪来的？
 
@@ -488,7 +436,7 @@ docker官方镜像仓库地址：https://hub.docker.com，保存了大部分常�
 
 由于某些你懂的原因，国内访问外网异常慢，经常上传不上去，这里我也没耐心了，先截上面的图~~~
 
-## <span id="head31">6.2.  私有仓库</span>
+## 6.2.  私有仓库
 
 很多时候企业级开发为了安全起见不会将仓库放到公共平台上，虽然可以创建私有仓库，所以需要搭建自己的私有的仓库。
 
@@ -524,11 +472,11 @@ docker run -it -d -p 5000:5000 -v /opt/docker:/var/lib/registry registry
 
 ![img](README.assets/clip_image122.jpg)
 
-# <span id="head32">7. 数据卷</span>
+# 7. 数据卷
 
 在使用Docker的过程中，需要对一些数据进行持久化，我们知道数据持久化一般就是写入文件或者保存到数据库中，理论上数据库数据本质上也是磁盘文件。Docker数据持久化可以通过数据卷来实现。
 
-## <span id="head33">7.1.   数据卷</span>
+## 7.1.   数据卷
 
 **1)**   **基本概念**
 
@@ -592,7 +540,7 @@ Docker挂载数据卷的默认权限是读写（rw），用户也可以通过ro�
 
 ![img](README.assets/clip_image136.jpg)
 
-## <span id="head34">7.2. 数据卷容器</span>
+## 7.2. 数据卷容器
 
 **1)**      **基本概念**
 
@@ -638,7 +586,7 @@ ubuntu-v6中新建文件
 
 如果删除了挂载的容器（包括dbdata、db1和db2），数据卷并不会被自动删除。如果要删除一个数据卷，必须在删除最后一个还挂载着它的容器时显式使用docker rm -v命令来指定同时删除关联的容器。
 
-## <span id="head35">7.3. 数据迁移</span>
+## 7.3. 数据迁移
 
 利用数据卷容器对其中的数据卷进行备份、恢复，以实现数据的迁移。
 
@@ -666,11 +614,11 @@ ubuntu-v6中新建文件
 
 即在要恢复到的容器挂载实现备份的容器存放备份文件的数据卷，这样的话当前容器共享了备份目录，就可以进行对备份文件的解压操作了。
 
-# <span id="head36">8. 网络</span>
+# 8. 网络
 
 容器作为独立的生命体，运行时必然涉及与外界的交互，这就关系网络相关的内容，本章我们主要看下端口映射相关的内容，先不了解容器网络模式的内容（相关内容可以参考：https://www.cnblogs.com/zuxing/articles/8780661.html），因为一般我们经常需要配置的就是网络端口了。
 
-## <span id="head37">8.1. 端口绑定</span>
+## 8.1. 端口绑定
 
 容器在运行的时候可能需要被外部应用访问，例如MySQL容器，我们知道平时在连接访问计算机上安装的MySQL服务的时候需要设置连接端口，那么容器化的MySQL如何知道它的端口呢？
 
@@ -686,7 +634,7 @@ ubuntu-v6中新建文件
 
 我们利用客户端连接试试：
 
-## <span id="head38">8.2. 容器通信</span>
+## 8.2. 容器通信
 
 在实际应用中我们的业务应用和提供数据接口服务的应用可能都通过容器的方式部署，那么就涉及容器之间的通信。一种实现方式是大家都映射出端口到宿主机，例如图示：
 
@@ -700,7 +648,7 @@ ubuntu-v6中新建文件
 
 ![img](README.assets/clip_image164.jpg)
 
---link参数设置当前容器连接到的网络服务容器。格式为--link name:alias,其中name是要连接的容器名称，alias是这个连接的别名。
+ --link参数设置当前容器连接到的网络服务容器。格式为--link name:alias,其中name是要连接的容器名称，alias是这个连接的别名。
 
 Docker在两个容器之间创建了安全隧道，而且不用映射它们的端口到宿主机上，所以上面mysql-v1启动时候我们不需要加-p 3306:8806这样的设置端口映射参数，以保证安全性。
 
@@ -708,19 +656,19 @@ Docker在两个容器之间创建了安全隧道，而且不用映射它们的�
 
 ![img](README.assets/clip_image166.jpg)
 
-# <span id="head39">9. Dockerfile</span>
+# 9. Dockerfile
 
-## <span id="head40">9.1. 前言说明</span>
+## 9.1. 前言说明
 
 在前面的操作过程中我们都是利用Docker已有的镜像创建生成容器，进行各种操作，那么我们是否可以自定义镜像文件呢？答案是可以的。自定义镜像镜像文件正是我们部署我们生产应用的首要条件，例如基于Java的docker镜像文件，结合我们自己的生成应用以及依赖环境，可以打包生成一个新的镜像，在需要部署运行的时候直接生成容器运行即可，无需各种冗杂、重复的配置工作。那么下面我们就来了解下如何自定义镜像。
 
-## <span id="head41">9.2. 基本概念</span>
+## 9.2. 基本概念
 
-### <span id="head42">9.2.1. 何为Dockerfile?</span>
+### 9.2.1. 何为Dockerfile?
 
 Dockerfile用大白话解释就是一个配置文件，里面有各种命令，可用来构建自定义Docker镜像。作用好比如Maven的pom文件一样，可依据设置的指令执行相关的动作。
 
-### <span id="head43">9.2.2. 组成结构</span>
+### 9.2.2. 组成结构
 
 一般Dockerfile分为四个部分：基础镜像信息、维护者信息、镜像操作指令和容器启动时的指令，对应的命令列表：
 
@@ -731,11 +679,11 @@ Dockerfile用大白话解释就是一个配置文件，里面有各种命令，�
 | 镜像操作指令       | RUN、COPY、ADD、EXPOSE、WORKDIR、ONBUILD、USER、VOLUME等 |
 | 容器启动时执行指令 | CMD、ENTRYPOINT                                          |
 
-### <span id="head44">9.2.3. 注释</span>
+### 9.2.3. 注释
 
 注释行以#开头即可
 
-## <span id="head45">9.3. 命令详解</span>
+## 9.3. 命令详解
 
 **1)**   **FROM**
 
@@ -827,13 +775,13 @@ CMD的命令会被 docker run 的命令覆盖，ENTRYPOINT不会
 
 Ø  CMD、ENTRYPOINT都存在时： //TODO
 
-## <span id="head46">9.4. 操作步骤</span>
+## 9.4. 操作步骤
 
 以下以实际应用为例子说明如何构建自定义镜像。
 
 目标：基于Java的镜像部署一个SpringBoot应用——HelloDocker。
 
-### <span id="head47">9.4.1. 编写微服务应用</span>
+### 9.4.1. 编写微服务应用
 
 我们利用Eclispe创建了一个SpringBoot应用——HelloDocker，具体步骤这里省略。我们看下主要的配置文件：
 
@@ -851,7 +799,7 @@ CMD的命令会被 docker run 的命令覆盖，ENTRYPOINT不会
 
 ![img](README.assets/clip_image194.jpg)
 
-### <span id="head48">9.4.2. 创建镜像操作目录</span>
+### 9.4.2. 创建镜像操作目录
 
 我们在Linux上创建一个我们构建镜像的目录：dockerdir，当然这个目录可以是任意位置，任意名称的，我们主要用来方便构建镜像时相关文件一起不混乱。
 
@@ -859,19 +807,19 @@ CMD的命令会被 docker run 的命令覆盖，ENTRYPOINT不会
 
 ![img](README.assets/clip_image196.jpg)
 
-### <span id="head49">9.4.3. 编写构建自定义镜像脚本</span>
+### 9.4.3. 编写构建自定义镜像脚本
 
 新建dockerfile文件：touch dockerfile 、vim dockerfile，注意文件名称必须是dockerfile:
 
 ![img](README.assets/clip_image198.jpg)
 
-### <span id="head50">9.4.4. 编译生成镜像</span>
+### 9.4.4. 编译生成镜像
 
 在当前目录输入命令：**docker build -t [自定义镜像名称] .** 编译生成镜像文件，注意最后的 . 点号，这个是指当前目录，即docker在当前目录寻找dockerfile文件，根据文件中的指令编译生成自定义镜像文件。
 
 ![img](README.assets/clip_image200.jpg)
 
-### <span id="head51">9.4.5. 运行容器实例</span>
+### 9.4.5. 运行容器实例
 
 我们成功生成自定义镜像myapp，我们可以启动运行容器：
 
@@ -898,4 +846,3 @@ CMD的命令会被 docker run 的命令覆盖，ENTRYPOINT不会
 ![img](README.assets/clip_image212.jpg)
 
 可以看到日志文件同容器中的一致，这样保证了日志数据的安全性，即使容器不存在日志数据依然可以保留，当然这里只是测试用日志文件而已，实际中肯定是保存重要的业务数据等
-
